@@ -1,0 +1,11 @@
+{# templates/task/list.html.twig #}
+
+<h1>Liste des Tâches</h1>
+
+<ul>
+    {% for task in tasks %}
+        <li>{{ task.title }} - {{ task.isDone ? 'Terminée' : 'En cours' }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{{ path('task_new') }}">Créer une nouvelle tâche</a>
