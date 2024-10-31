@@ -25,6 +25,10 @@ class Task
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $assignedUser = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,5 +78,17 @@ class Task
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
+    }
+
+    public function getAssignedUser(): ?User
+    {
+        return $this->assignedUser;
+    }
+
+    public function setAssignedUser(?User $assignedUser): static
+    {
+        $this->assignedUser = $assignedUser;
+
+        return $this;
     }
 }
